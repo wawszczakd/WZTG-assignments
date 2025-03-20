@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[a4paper, margin = 2 cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\title{Selected Topics in Graph Theory Assignment 1}
+\author{Dominik Wawszczak}
+\date{2025-03-18}
+
+\begin{document}
+	\setlength{\parindent}{0 cm}
+	
+	Dominik Wawszczak \hfill Selected Topics in Graph Theory
+	
+	Student ID Number: 440014 \hfill Assignment 1
+	
+	Group Number: 2
+	
+	\bigskip
+	\hrule
+	\bigskip
+	
+	\textbf{Problem 2}
+	
+	\medskip
+	
+	Consider a bipartite graph \(G = (X, C, E)\), where \(X = \{x_{1}, x_{2},
+	\ldots, x_{n}\}\), \(C = \{C_{1}, C_{2}, \ldots, C_{m}\}\), and \(E =
+	\{(x_{i}, C_{j}) \ : \ C_{j} \ \text{contains either} \ x_{i} \ \text{or} \
+	\neg x_{i}\}\). This graph is \(3\)-regular, as each variable appears in
+	exactly three clauses, and every clause contains exactly three literals
+	corresponding to pairwise distinct variables. A direct consequence of this
+	observation is that \(n = m\), since \(3n = |E| = 3m\).
+	
+	\medskip
+	
+	We will now prove that Hall’s condition holds in \(G\). Let \(S\) be any
+	subset of \(X\). Define \(E_{S} = \{(x_{i}, C_{j}) \ : \ (x_{i}, C_{j}) \in
+	E \ \wedge \ x_{i} \in S\}\) as the set of edges between \(S\) and
+	\(N_{G}(S)\). Since \(|E_{S}| = 3 |S|\), we obtain \(3 |S| \leqslant 3
+	|N_{G}(S)|\), confirming that \(G\) satisfies Hall’s condition. Therefore,
+	\(G\) has a perfect matching.
+	
+	\medskip
+	
+	We can satisfy each clause \(C_{j}\) by assigning the appropriate truth
+	value to its matched variable. This ensures that the entire formula is
+	satisfied, completing the proof.
+\end{document}
