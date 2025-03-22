@@ -58,4 +58,50 @@
 	We can satisfy each clause \(C_{j}\) by assigning the appropriate truth
 	value to its matched variable. This ensures that the entire formula is
 	satisfied, completing the proof.
+	
+	\bigskip
+	
+	\textbf{Problem 3}
+	
+	\medskip
+	
+	Suppose, for the sake of contradiction, that \(G\) does not have a perfect
+	matching. This implies that Tutte's condition does not hold in \(G\).
+	Therefore, there exists a set \(U \subseteq V(G)\) such that \(|\mathcal{C}|
+	> |U|\), where \(\mathcal{C}\) is the set of odd connected components in \(G
+	\setminus U\). The size of \(U\) must, of course, be at least \(t\).
+	
+	\medskip
+	
+	We say that a vertex \(u \in U\) and a component \(C \in \mathcal{C}\) are
+	\textit{adjacent} if and only if there exists a vertex \(v \in C\) such that
+	\(\{u, v\} \in E(G)\). Define:
+	\[ X \ = \ \{(u, C) \ : \ u \in U \ \wedge \ C \in \mathcal{C} \ \wedge \ u
+	\ \text{and} \ C \ \text{are adjacent}\} \text{.} \]
+	
+	\medskip
+	
+	For any \(u \in U\), there can be at most \(t\) components in
+	\(\mathcal{C}\) adjacent to it, as otherwise \(K_{1, t + 1}\) would be an
+	induced subgraph of \(G\). This gives us the following upper bound for the
+	size of \(X\): \(|X| \leqslant t |U|\).
+	
+	\medskip
+	
+	We now prove that for any \(C \in \mathcal{C}\), there are at least \(t\)
+	vertices in \(U\) adjacent to it. Suppose, for the sake of contradiction,
+	that the size of the set
+	\[ S \ = \ \{u \ : \ u \in U \ \wedge \ u \ \text{and} \ C \
+	\text{are adjacent}\} \]
+	is smaller than \(t\). Since \(S \subsetneq U\), there exists a vertex in
+	\(U \setminus S\) that is not adjacent to \(C\). This leads to a
+	contradiction, as \(G \setminus S\) is not connected and \(|S| < t\). Thus,
+	we obtain a lower bound for the size of \(X\): \(t |\mathcal{C}| \leqslant
+	|X|\).
+	
+	\medskip
+	
+	From the above, we have \(t |\mathcal{C}| \leqslant |X| \leqslant t |U|\),
+	and therefore \(\mathcal{C} \leqslant |U|\). This contradiction completes
+	the proof.
 \end{document}
