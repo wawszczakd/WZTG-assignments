@@ -32,6 +32,46 @@
 	\hrule
 	\bigskip
 	
+	\textbf{Problem 1}
+	
+	\medskip
+	
+	For every \(k \in \mathbb{N}\), define \(G_{k}\) as a full ternary tree of
+	depth \(k - 1\) with an additional vertex \(s\), which is connected to all
+	the vertices of the tree. The treewidth of this graph is \(2\) because we
+	can take the classic decomposition of a ternary tree and insert \(s\) into
+	every bag. It remains to show that the spaghetti treewidth of \(G_{k}\) is
+	at least \(k\).
+	
+	\medskip
+	
+	Suppose, for the sake of contradiction, that there exists a spaghetti tree
+	decomposition \((T, \{B_{x} \ : \ x \in V(T)\})\) of width at most \(k -
+	1\). Without loss of generality, assume that this decomposition is minimal
+	in terms of \(|V(T)|\).
+	
+	\medskip
+	
+	We claim that \(s\) belongs to every bag in the decomposition. Suppose
+	instead that there exists a vertex whose bag does not contain \(s\). Then,
+	there is also a leaf \(l \in V(T)\) with the same property. Let \(p\) be the
+	only neighbor of \(l\) in \(T\). Since \(|V(T)|\) is minimal, there must be
+	a vertex \(u \in B_{l}\) such that \(u \notin B_{p}\), as otherwise,
+	\(B_{l}\) would be redundant. Consequently, there is no bag that contains
+	both \(s\) and \(u\) because the nodes whose bags contain \(u\) must induce
+	a path in \(T\). This proves the claim.
+	
+	\medskip
+	
+	Since \(s\) is included in every bag, \(T\) is a path. Thus, removing \(s\)
+	from each bag yields a path decomposition of a ternary tree of depth \(k -
+	1\). The width of this path decomposition is one less than that of the
+	original decomposition, which is at most \(k - 2\). However, we showed in
+	the tutorials that the pathwidth of a full ternary tree of depth \(k - 1\)
+	is \(k - 1\). This contradiction completes the proof.
+	
+	\bigskip
+	
 	\textbf{Problem 2}
 	
 	\medskip
@@ -46,12 +86,12 @@
 	
 	\medskip
 	
-	We will now prove that Hall’s condition holds in \(G\). Let \(S\) be any
-	subset of \(X\). Define \(E_{S} = \{(x_{i}, C_{j}) \ : \ (x_{i}, C_{j}) \in
-	E \ \wedge \ x_{i} \in S\}\) as the set of edges between \(S\) and
-	\(N_{G}(S)\). Since \(|E_{S}| = 3 |S|\), we obtain \(3 |S| \leqslant 3
-	|N_{G}(S)|\), confirming that \(G\) satisfies Hall’s condition. Therefore,
-	\(G\) has a perfect matching.
+	We now prove that Hall’s condition holds in \(G\). Let \(S\) be any subset
+	of \(X\). Define \(E_{S} = \{(x_{i}, C_{j}) \ : \ (x_{i}, C_{j}) \in E \
+	\wedge \ x_{i} \in S\}\) as the set of edges between \(S\) and \(N_{G}(S)\).
+	Since \(|E_{S}| = 3 |S|\), we obtain \(3 |S| \leqslant 3 |N_{G}(S)|\),
+	confirming that \(G\) satisfies Hall’s condition. Therefore, \(G\) has a
+	perfect matching.
 	
 	\medskip
 	
@@ -102,6 +142,6 @@
 	\medskip
 	
 	From the above, we have \(t |\mathcal{C}| \leqslant |X| \leqslant t |U|\),
-	and therefore \(\mathcal{C} \leqslant |U|\). This contradiction completes
+	and therefore \(|\mathcal{C}| \leqslant |U|\). This contradiction completes
 	the proof.
 \end{document}
