@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[a4paper, margin = 2 cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\title{Selected Topics in Graph Theory Assignment 2}
+\author{Dominik Wawszczak}
+\date{2025-05-18}
+
+\begin{document}
+	\setlength{\parindent}{0 cm}
+	
+	Dominik Wawszczak \hfill Selected Topics in Graph Theory
+	
+	Student ID Number: 440014 \hfill Assignment 2
+	
+	Group Number: 2
+	
+	\bigskip
+	\hrule
+	\bigskip
+	
+	\textbf{Problem 4}
+	
+	\medskip
+	
+	Let \(S \subseteq V(G)\) be an independent set of \(G\), and define a vector
+	\(x \in \mathbb{R}^n\) such that \(x_{i} = 1\) if \(i \in S\), and \(x_{i} =
+	0\) otherwise. Decompose \(x\) as
+	\[
+		x \ = \ \frac{|S|}{n} \cdot \mathbf{1} + y \text{.}
+	\]
+	Then \(y\) is orthogonal to \(\mathbf{1}\), since
+	\[
+		y^{T} \mathbf{1} \ = \ \bigg( x - \frac{|S|}{n} \mathbf{1} \bigg)^{T}
+		\mathbf{1} \ = \ x^{T} \mathbf{1} - \frac{|S|}{n} \mathbf{1}^{T}
+		\mathbf{1} \ = \ |S| - \frac{|S|}{n} n \ = \ 0 \text{.}
+	\]
+	
+	\medskip
+	
+	Let \(A\) be the adjacency matrix of \(G\). Since \(S\) is an independent
+	set, it follows that
+	\[
+		x^{T} A x \ = \ \sum\limits_{i \in S} \sum\limits_{j \in S} A_{ij} \ = \
+		0 \text{,}
+	\]
+	Expanding \(x\) using the decomposition, we get
+	\[
+		0 \ = \ x^{T} A x \ = \ \bigg( \frac{|S|}{n} \mathbf{1} + y \bigg)^{T} A
+		\bigg( \frac{|S|}{n} \mathbf{1} + y \bigg) \ = \ \frac{|S|^{2}}{n^{2}}
+		\mathbf{1}^{T} A \mathbf{1} + 2 \frac{|S|}{n} \mathbf{1}^{T} A y + y^{T}
+		A y \text{.}
+	\]
+	Since \(\mathbf{1}\) is an eigenvector of \(A\) with eigenvalue \(d\), we
+	have \(A \mathbf{1} = d \mathbf{1}\), and thus
+	\[
+		\frac{|S|^{2}}{n^{2}} \mathbf{1}^{T} A \mathbf{1} \ = \
+		\frac{|S|^{2}}{n^{2}} \mathbf{1}^{T} d \mathbf{1} \ = \
+		\frac{|S|^{2}}{n^{2}} d n \ = \ \frac{|S|^{2} d}{n} \text{.}
+	\]
+	Also,
+	\[
+		2 \frac{|S|}{n} \mathbf{1}^{T} A y \ = \ 2 \frac{|S|}{n} \mathbf{1}^{T}
+		d y \ = \ 0 \text{,}
+	\]
+	since \(\mathbf{1}^{T} y = 0\) by orthogonality. Therefore,
+	\[
+		0 \ = \ \frac{|S|^{2} d}{n} + y^{T} A y \text{.}
+	\]
+	
+	\medskip
+	
+	Rearranging gives
+	\[
+		- \frac{|S|^{2} d}{n} \ = \ y^{T} A y \ \geqslant \ \lambda_{n} \cdot
+		\|y\|^{2} \text{.}
+	\]
+	We compute
+	\[
+		\|y\|^{2} \ = \ \bigg\| x - \frac{|S|}{n} \mathbf{1} \bigg\|^{2} \ = \
+		|S| - 2 \frac{|S|^{2}}{n} + \frac{|S|^{2}}{n} \ = \ |S| -
+		\frac{|S|^{2}}{n} \text{,}
+	\]
+	so
+	\[
+		- \frac{|S|^{2} d}{n} \ \geqslant \ \lambda_{n} \cdot \bigg( |S| -
+		\frac{|S|^{2}}{n} \bigg) \text{.}
+	\]
+	Dividing both sides by \(|S|\) yields
+	\[
+		- \frac{|S| d}{n} \ \geqslant \ \lambda_{n} \cdot \bigg( 1 -
+		\frac{|S|}{n} \bigg) \quad \implies \quad |S| \cdot d \ \leqslant \
+		\lambda_{n} |S| - \lambda_{n} \cdot n \quad \implies \quad |S| \
+		\leqslant \ n \cdot \frac{- \lambda_{n}}{d - \lambda_{n}} \text{,}
+	\]
+	which completes the proof.
+\end{document}
