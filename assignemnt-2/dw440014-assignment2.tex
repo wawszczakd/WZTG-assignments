@@ -14,6 +14,7 @@
 \usepackage{mathtools}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{enumitem}
 
 \title{Selected Topics in Graph Theory Assignment 2}
 \author{Dominik Wawszczak}
@@ -32,21 +33,109 @@
 	\hrule
 	\bigskip
 	
+	\textbf{Problem 2}
+	
+	\medskip
+	
+	We will show that a \(\frac{k}{100} \times \frac{k}{100}\) grid is a minor
+	of \(\Gamma_{k} \setminus I\). To this end, we partition the vertices of
+	\(\Gamma_{k}\) into \(\big\lfloor \frac{k}{100} \big\rfloor^{2}\) squares of
+	size \(100 \times 100\). Formally, define
+	\[
+		S_{i, j} \ = \ \Gamma_{k} \big[ \{(a, b) \ : \ 100 (i - 1) < a \leqslant
+		100 i \ \wedge \ 100 (j - 1) < b \leqslant 100 j\} \big] \text{,}
+	\]
+	for all \(i, j \in \big\{ 1, 2, \ldots, \big\lfloor \frac{k}{100}
+	\big\rfloor \big\}\).
+	
+	\medskip
+	
+	We now prove that for every such \(i, j\), the subgraph \(S_{i, j} \setminus
+	I\) is connected. Take any distinct \((a, b), (a', b') \in S_{i, j}
+	\setminus I\). Without loss of generality, assume \((a, b) < (a', b')\),
+	i.e., \(a < a'\) or \(a = a'\) and \(b < b'\). We will construct a path from
+	\((a, b)\) to \((a', b')\) by induction on \(|a - a'| + |b - b'|\).
+	
+	\medskip
+	
+	\underline{Base case:} If \(|a - a'| + |b - b'| = 1\), then \((a, b)\) and
+	\((a', b')\) are adjacent in \(S_{i, j}\), and thus directly connected.
+	
+	\medskip
+	
+	\underline{Induction step:} We consider two cases:
+	\begin{enumerate}
+		\item \(a = a'\)
+		      
+		      If \((a', b' - 1) \notin I\), we can move to that vertex and
+		      proceed. Otherwise, we go to \((a', b' - 2)\) and then proceed
+		      via:
+		      \begin{enumerate}[label=\theenumi.\arabic*]
+		          \item \((a' + 1, b' - 1), (a' + 1, b'), (a', b')\) if \(a
+		                \bmod 100 \neq 0\);
+		          \item \((a' - 1, b' - 2), (a' - 1, b' - 1), (a', b')\) if \(a
+		                \bmod 100 = 0\).
+		      \end{enumerate}
+		
+		\item \(a < a'\)
+		      
+		      If \((a' - 1, b') \notin I\), we extend the path through that
+		      vertex. Otherwise, we distinguish three subcases:
+		      \begin{enumerate}[label=\theenumi.\arabic*]
+		          \item \(b = b'\): The argument is analogous to the case \(a =
+		                a'\).
+		          \item \(b < b'\): If \((a', b) \notin I\), we can proceed via
+		                \((a', b)\) to \((a', b')\). Otherwise, we first go to
+		                \((a' - 1, b)\), then to \((a', b + 1)\), and finally to
+		                \((a', b')\).
+		          \item \(b > b'\): As before, if \((a', b) \notin I\), we
+		                proceed through \((a', b)\) to \((a', b')\). Otherwise,
+		                we go to \((a' - 1, b)\), then to \((a' - 1, b - 1)\),
+		                followed by \((a', b - 1)\), and continue to \((a',
+		                b')\).
+		      \end{enumerate}
+	\end{enumerate}
+	
+	\medskip
+	
+	We have established that each \(S_{i, j} \setminus I\) is connected. It
+	remains to show that for any \(i, j, i', j' \in \big\{ 1, 2, \ldots,
+	\big\lfloor \frac{k}{100} \big\rfloor \big\}\) with \(|i - i'| + |j - j'| =
+	1\), there exists an edge in \(\Gamma_{k} \setminus I\) connecting
+	\(S_{i, j} \setminus I\) and \(S_{i', j'} \setminus I\).
+	
+	\medskip
+	
+	We consider only the case \(i' = i + 1\) and \(j' = j\), as other case is
+	symmetric. Choose any \((a, b) \in V(S_{i, j} \setminus I)\) with \(a = 100
+	i\) and \(b < 100 j\). If \((a + 1, b) \notin I\), then the edge \(\{(a, b),
+	(a + 1, b)\}\) connects the two components. Otherwise, we can use the edge
+	\(\{(a, b), (a + 1, b + 1)\}\).
+	
+	\medskip
+	
+	Since a \(\frac{k}{100} \times \frac{k}{100}\) grid is a minor of
+	\(\Gamma_{k} \setminus I\), we conclude that \(\mathrm{tw}(\Gamma_{k}
+	\setminus I) \geqslant \frac{k}{100}\), completing the proof.
+	
+	\newpage
+	
 	\textbf{Problem 4}
 	
 	\medskip
 	
 	Let \(S \subseteq V(G)\) be an independent set of \(G\), and define a vector
-	\(x \in \mathbb{R}^n\) such that \(x_{i} = 1\) if \(i \in S\), and \(x_{i} =
-	0\) otherwise. Decompose \(x\) as
+	\(x \in \mathbb{R}^{n}\) such that \(x_{i} = 1\) if \(i \in S\), and \(x_{i}
+	= 0\) otherwise. Decompose \(x\) as
 	\[
 		x \ = \ \frac{|S|}{n} \cdot \mathbf{1} + y \text{.}
 	\]
 	Then \(y\) is orthogonal to \(\mathbf{1}\), since
 	\[
-		y^{T} \mathbf{1} \ = \ \bigg( x - \frac{|S|}{n} \mathbf{1} \bigg)^{T}
-		\mathbf{1} \ = \ x^{T} \mathbf{1} - \frac{|S|}{n} \mathbf{1}^{T}
-		\mathbf{1} \ = \ |S| - \frac{|S|}{n} n \ = \ 0 \text{.}
+		y^{T} \mathbf{1} \ = \ \bigg( x - \frac{|S|}{n} \cdot \mathbf{1}
+		\bigg)^{T} \cdot \mathbf{1} \ = \ x^{T} \mathbf{1} - \frac{|S|}{n} \cdot
+		\mathbf{1}^{T} \mathbf{1} \ = \ |S| - \frac{|S|}{n} \cdot n \ = \ 0
+		\text{.}
 	\]
 	
 	\medskip
@@ -54,27 +143,27 @@
 	Let \(A\) be the adjacency matrix of \(G\). Since \(S\) is an independent
 	set, it follows that
 	\[
-		x^{T} A x \ = \ \sum\limits_{i \in S} \sum\limits_{j \in S} A_{ij} \ = \
-		0 \text{,}
+		x^{T} A x \ = \ \sum\limits_{i, j \in \{1, 2, \ldots, n\}} A_{i, j}
+		x_{i} x_{j} \ = \ 0 \text{,}
 	\]
 	Expanding \(x\) using the decomposition, we get
 	\[
-		0 \ = \ x^{T} A x \ = \ \bigg( \frac{|S|}{n} \mathbf{1} + y \bigg)^{T} A
-		\bigg( \frac{|S|}{n} \mathbf{1} + y \bigg) \ = \ \frac{|S|^{2}}{n^{2}}
-		\mathbf{1}^{T} A \mathbf{1} + 2 \frac{|S|}{n} \mathbf{1}^{T} A y + y^{T}
-		A y \text{.}
+		0 \ = \ x^{T} A x \ = \ \bigg( \frac{|S|}{n} \cdot \mathbf{1} + y
+		\bigg)^{T} \cdot A \cdot \bigg( \frac{|S|}{n} \cdot \mathbf{1} + y
+		\bigg) \ = \ \frac{|S|^{2}}{n^{2}} \cdot \mathbf{1}^{T} A \mathbf{1} + 2
+		\cdot \frac{|S|}{n} \cdot \mathbf{1}^{T} A y + y^{T} A y \text{.}
 	\]
 	Since \(\mathbf{1}\) is an eigenvector of \(A\) with eigenvalue \(d\), we
 	have \(A \mathbf{1} = d \mathbf{1}\), and thus
 	\[
-		\frac{|S|^{2}}{n^{2}} \mathbf{1}^{T} A \mathbf{1} \ = \
-		\frac{|S|^{2}}{n^{2}} \mathbf{1}^{T} d \mathbf{1} \ = \
-		\frac{|S|^{2}}{n^{2}} d n \ = \ \frac{|S|^{2} d}{n} \text{.}
+		\frac{|S|^{2}}{n^{2}} \cdot \mathbf{1}^{T} A \mathbf{1} \ = \
+		\frac{|S|^{2}}{n^{2}} \cdot \mathbf{1}^{T} d \mathbf{1} \ = \
+		\frac{|S|^{2}}{n^{2}} \cdot d n \ = \ \frac{|S|^{2} d}{n} \text{.}
 	\]
 	Also,
 	\[
-		2 \frac{|S|}{n} \mathbf{1}^{T} A y \ = \ 2 \frac{|S|}{n} \mathbf{1}^{T}
-		d y \ = \ 0 \text{,}
+		2 \cdot \frac{|S|}{n} \cdot \mathbf{1}^{T} A y \ = \ 2 \cdot
+		\frac{|S|}{n} \cdot \mathbf{1}^{T} d y \ = \ 0 \text{,}
 	\]
 	since \(\mathbf{1}^{T} y = 0\) by orthogonality. Therefore,
 	\[
@@ -90,8 +179,8 @@
 	\]
 	We compute
 	\[
-		\|y\|^{2} \ = \ \bigg\| x - \frac{|S|}{n} \mathbf{1} \bigg\|^{2} \ = \
-		|S| - 2 \frac{|S|^{2}}{n} + \frac{|S|^{2}}{n} \ = \ |S| -
+		\|y\|^{2} \ = \ \bigg\| x - \frac{|S|}{n} \cdot \mathbf{1} \bigg\|^{2} \
+		= \ |S| - 2 \cdot \frac{|S|^{2}}{n} + \frac{|S|^{2}}{n} \ = \ |S| -
 		\frac{|S|^{2}}{n} \text{,}
 	\]
 	so
@@ -102,9 +191,9 @@
 	Dividing both sides by \(|S|\) yields
 	\[
 		- \frac{|S| d}{n} \ \geqslant \ \lambda_{n} \cdot \bigg( 1 -
-		\frac{|S|}{n} \bigg) \quad \implies \quad |S| \cdot d \ \leqslant \
-		\lambda_{n} |S| - \lambda_{n} \cdot n \quad \implies \quad |S| \
-		\leqslant \ n \cdot \frac{- \lambda_{n}}{d - \lambda_{n}} \text{,}
+		\frac{|S|}{n} \bigg) \quad \implies \quad |S| d \ \leqslant \
+		\lambda_{n} |S| - \lambda_{n} n \quad \implies \quad |S| \ \leqslant \ n
+		\cdot \frac{- \lambda_{n}}{d - \lambda_{n}} \text{,}
 	\]
 	which completes the proof.
 \end{document}
