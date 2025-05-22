@@ -33,6 +33,123 @@
 	\hrule
 	\bigskip
 	
+	\textbf{Problem 1}
+	
+	\medskip
+	
+	Let \(n = |V(G)|\), and define vectors \(x_{t} \in \mathbb{R}^{n}\) for each
+	\(t \in \mathbb{N}\), where \(x_{t}[v]\) denotes the probability that vertex
+	\(v\) is visited at step \(t\). Let \(y \in \mathbb{R}^{n}\) be a vector
+	such that \(y[v]\) is the number of red edges incident to \(v\).
+	
+	\medskip
+	
+	We have
+	\[
+		x_{0} \ = \ \frac{y}{2 r} \qquad \text{and} \qquad x_{t} \ = \ \bigg(
+		\frac{A}{d} \bigg)^{t} \cdot x_{0} \text{,}
+	\]
+	for all \(t \in \mathbb{N}\), where \(A\) is the adjacency matrix of \(G\).
+	The goal is to estimate the value
+	\[
+		p_{t} \ = \ x_{t}^{T} \cdot \frac{y}{d} \text{.}
+	\]
+	
+	\medskip
+	
+	We decompose \(y\) as
+	\[
+		y \ = \ \frac{2 r}{n} \cdot \mathbf{1} + z \text{,}
+	\]
+	where \(z\) is orthogonal to \(\mathbf{1}\), since
+	\[
+		z^{T} \mathbf{1} \ = \ \bigg( y - \frac{2 r}{n} \cdot \mathbf{1}
+		\bigg)^{T} \cdot \mathbf{1} \ = \ y^{T} \mathbf{1} - \frac{2 r}{n} \cdot
+		\mathbf{1}^{T} \mathbf{1} \ = \ 2 r - \frac{2 r}{n} \cdot n \ = 0
+		\text{.}
+	\]
+	
+	\medskip
+	
+	Substituting into \(p_{t}\), we obtain
+	\begin{align*}
+		p_{t} \ &= \ x_{t}^{T} \cdot \frac{y}{d} \ = \ \Bigg( \bigg( \frac{A}{d}
+		\bigg)^{t} \cdot \frac{y}{2 r} \Bigg)^{T} \cdot \frac{y}{d} \ = \
+		\frac{1}{2 r d} \cdot \Bigg( \bigg( \frac{A}{d} \bigg)^{t} \cdot \bigg(
+		\frac{2 r}{n} \cdot \mathbf{1} + z \bigg) \Bigg)^{T} \cdot \bigg(
+		\frac{2 r}{n} \cdot \mathbf{1} + z \bigg) \ = \\
+		&= \ \frac{1}{2 r d} \cdot \Bigg( \frac{4 r^{2}}{n^{2}} \cdot
+		\mathbf{1}^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t} \cdot \mathbf{1} +
+		\frac{2 r}{n} \cdot \mathbf{1}^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t}
+		\cdot z + \frac{2r}{n} \cdot z^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t}
+		\cdot \mathbf{1} + z^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t} \cdot z
+		\Bigg) \text{.}
+	\end{align*}
+	Since \(\frac{A}{d}\) is a doubly stochastic matrix, we have
+	\[
+		\mathbf{1}^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t} \ = \ \mathbf{1}^{T}
+		\qquad \text{and} \qquad \bigg( \frac{A}{d} \bigg)^{t} \cdot \mathbf{1}
+		\ = \ \mathbf{1} \text{,}
+	\]
+	and hence
+	\begin{align*}
+		p_{t} \ &= \ \frac{1}{2 r d} \cdot \Bigg( \frac{4 r^{2}}{n^{2}} \cdot
+		\mathbf{1}^{T} \mathbf{1} + \frac{2 r}{n} \cdot \mathbf{1}^{T} z +
+		\frac{2 r}{n} \cdot z^{T} \mathbf{1} + z^{T} \cdot \bigg( \frac{A}{d}
+		\bigg)^{t} \cdot z \Bigg) \ = \\
+		& = \ \frac{1}{2 r d} \cdot \Bigg( \frac{4 r^{2}}{n^{2}} \cdot n + z^{T}
+		\cdot \bigg( \frac{A}{d} \bigg)^{t} \cdot z \Bigg) \ = \ \frac{2 r}{d n}
+		 + \frac{1}{2 r d} \cdot z^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t} \cdot
+		 z \text{.}
+	\end{align*}
+	
+	\medskip
+	
+	Thus, it remains to prove that
+	\[
+		\frac{1}{2 r d} \cdot z^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t} \cdot z
+		\ \leqslant \ \bigg( \frac{\lambda(G)}{d} \bigg)^{t} \text{.}
+	\]
+	Since
+	\[
+		z^{T} \cdot \bigg( \frac{A}{d} \bigg)^{t} \cdot z \ \leqslant \  \bigg(
+		\frac{\lambda(G)}{d} \bigg)^{t} \cdot \|z\|^{2} \text{,}
+	\]
+	it suffices to show that \(\|z\|^{2} \leqslant 2 r d\).
+	
+	\medskip
+	
+	We compute
+	\begin{align*}
+		\|z\|^{2} \ &= \ \bigg\| y - \frac{2 r}{n} \cdot \mathbf{1} \bigg\|^{2}
+		\ = \ y^{T} y - 2 \cdot \frac{2 r}{n} \cdot y^{T} \mathbf{1} +
+		\frac{4 r^{2}}{n^{2}} \cdot \mathbf{1}^{T} \mathbf{1} \ = \ y^{T} y - 2
+		\cdot \frac{2 r}{n} \cdot 2 r + \frac{4 r^{2}}{n^{2}} \cdot n \ = \\
+		&= \ y^{T} y - \frac{4 r^{2}}{n} \text{.}
+	\end{align*}
+	Let \(s = 2 r \bmod d\). The value of \(y^{T} y\) is largest when there are
+	\(\big\lfloor \frac{2 r}{d} \big\rfloor = \frac{2 r - s}{d}\) vertices with
+	\(d\) red edges, one vertex with \(s\) red edges, and the rest with none.
+	Otherwise, one could increase \(y^{T} y\) by transferring a red edge from a
+	vertex with the fewest nonzero red edges to another with fewer than \(d\)
+	red edges.
+	
+	\medskip
+	
+	This yields the following upper bound:
+	\[
+		y^{T} y \ \leqslant \ \bigg( \frac{2 r - s}{d} \bigg) \cdot d^{2} +
+		s^{2} \ = \ 2 r d - s d + s^{2} \ < \ 2 r d \text{,}
+	\]
+	as \(s < d\). Therefore,
+	\[
+		\|z\|^{2} \ = \ y^{T} y - \frac{4 r^{2}}{n} \ < \ 2 r d -
+		\frac{4 r^{2}}{n} \ \leqslant \ 2 r d \text{,}
+	\]
+	which completes the proof.
+	
+	\bigskip
+	
 	\textbf{Problem 2}
 	
 	\medskip
@@ -118,7 +235,7 @@
 	\(\Gamma_{k} \setminus I\), we conclude that \(\mathrm{tw}(\Gamma_{k}
 	\setminus I) \geqslant \frac{k}{100}\), completing the proof.
 	
-	\newpage
+	\bigskip
 	
 	\textbf{Problem 4}
 	
