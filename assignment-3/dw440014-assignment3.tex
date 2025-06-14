@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[a4paper, margin = 2 cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+
+\title{Selected Topics in Graph Theory Assignment 3}
+\author{Dominik Wawszczak}
+\date{2025-06-14}
+
+\begin{document}
+	\setlength{\parindent}{0 cm}
+	
+	Dominik Wawszczak \hfill Selected Topics in Graph Theory
+	
+	Student ID Number: 440014 \hfill Assignment 3
+	
+	Group Number: 2
+	
+	\bigskip
+	\hrule
+	\bigskip
+	
+	\textbf{Problem 1}
+	
+	\medskip
+	
+	Let \(G\) be a simple planar graph with \(v\) vertices, \(e\) edges, and
+	\(f\) faces. Suppose \(G\) has \(t\) triangular faces and that every vertex
+	has degree at least \(5\). Since the minimum degree is \(5\), we have \(2 e
+	\geqslant 5 v\). By Euler's formula:
+	\[
+		v - e + f \ = \ 2 \quad \implies \quad f - 2 \ = \ e - v \ \geqslant \
+		\frac{3}{5} e \text{.}
+	\]
+	Let \(f_{i}\) denote the number of faces of size \(i\). Then:
+	\[
+		2 e \ = \ \sum\limits_{i \geqslant 3} i f_{i} \ = \ 3 t +
+		\sum\limits_{i \geqslant 4} i f_{i} \ \geqslant \ 3 t + 4 \cdot
+		\sum\limits_{i \geqslant 4} f_{i} \ = \ 3 t + 4 (f - t) \ = \ 4 f - t
+		\text{.}
+	\]
+	Thus:
+	\[
+		t \ \geqslant \ 4 f - 2 e \ \geqslant \ 4 f - \frac{10}{3} \cdot (f - 2)
+		\ = \ \frac{2 f + 20}{3} \ \geqslant \ \frac{2 t + 20}{3} \text{,}
+	\]
+	which implies:
+	\[
+		3 t \ \geqslant \ 2 t + 20 \quad \implies \quad t \ \geqslant \ 20
+		\text{.}
+	\]
+	Hence, \(k \geqslant 19\). Since the icosahedral graph is a \(5\)-regular
+	simple planar graph with exactly \(20\) triangular faces, \(k = 19\).
+\end{document}
