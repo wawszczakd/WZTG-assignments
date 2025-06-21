@@ -64,4 +64,94 @@
 	\]
 	Hence, \(k \geqslant 19\). Since the icosahedral graph is a \(5\)-regular
 	simple planar graph with exactly \(20\) triangular faces, \(k = 19\).
+	
+	\bigskip
+	
+	\textbf{Problem 2}
+	
+	\medskip
+	
+	For any \(i \in \{1, 2, \ldots, k\}\) and any \(u\) in the same connected
+	component as \(v_{i}\), we have
+	\[
+		\bigg| p_{t}(v_{i}, u) - \frac{1}{n} \bigg| \ \leqslant \
+		(1 - \alpha)^{t} \text{,}
+	\]
+	where \(p_{t}(a, b)\) is the probability that a random walk of length \(t\)
+	starting at \(a\) ends at \(b\). By setting \(t =
+	\frac{\ln (2 n)}{- \ln (1 - \alpha)} = \mathcal{O}(\log n)\), we obtain
+	\[
+		\bigg| p_{t}(v_{i}, u) - \frac{1}{n} \bigg| \ \leqslant \ \frac{1}{2 n}
+		\text{,} \quad \text{and therefore} \quad p_{t}(v_{i}, u) \in \bigg[
+		\frac{1}{2 n}, \frac{3}{2 n} \bigg] \text{.}
+	\]
+	
+	\medskip
+	
+	If we perform \(m\) such walks, the probability that at least one ends at
+	\(u\) is at least
+	\[
+		1 - \bigg( 1 - \frac{1}{2n} \bigg)^{m} \text{.}
+	\]
+	We want this probability to be at least \(\frac{1}{\sqrt{n}}\). Since
+	\[
+		\bigg( 1 - \frac{1}{2 n} \bigg)^{m} \ \leqslant \ e^{- \frac{m}{2 n}}
+		\text{,}
+	\]
+	it suffices that \(m\) satisfies
+	\[
+		e^{- \frac{m}{2 n}} \ \leqslant \ 1 - \frac{1}{\sqrt{n}} \ = \
+		e^{\ln \big( 1 - \frac{1}{\sqrt{n}} \big)} \quad \implies \quad -
+		\frac{m}{2 n} \ \leqslant \ \ln \bigg( 1 - \frac{1}{\sqrt{n}} \bigg)
+		\text{,}
+	\]
+	hence
+	\begin{align*}
+		m \ &\geqslant \ - 2 n \ln \bigg( 1 - \frac{1}{\sqrt{n}} \bigg) \ = \ 2
+		n \cdot \sum\limits_{i = 1}^{\infty}
+		\frac{\Big( \frac{1}{\sqrt{n}} \Big)^{i}}{i} \ = \ 2 \sqrt{n} + 1 +
+		\sum\limits_{i = 3}^{\infty}
+		\frac{\Big( \frac{1}{\sqrt{n}} \Big)^{i - 2}}{i} \ \geqslant \\
+		&\geqslant \ 2 \sqrt{n} + 1 + \sum\limits_{i = 3}^{\infty} \bigg(
+		\frac{1}{\sqrt{n}} \bigg)^{i - 2} \ = \ 2 \sqrt{n} + 1 +
+		\frac{1}{\sqrt{n}} \cdot \sum\limits_{i = 0}^{\infty} \bigg(
+		\frac{1}{\sqrt{n}} \bigg)^{i} \ = \\
+		&= \ 2 \sqrt{n} + 1 + \frac{1}{\sqrt{n}} \cdot
+		\frac{1}{1 - \frac{1}{\sqrt{n}}} \ = \ 2 \sqrt{n} + 1 +
+		\frac{1}{\sqrt{n} - 1} \text{,}
+	\end{align*}
+	so \(m = \mathcal{O} \big( \sqrt{n} \big)\).
+	
+	\medskip
+	
+	At initialization, for each \(i \in \{1, 2, \ldots, k\}\), we perform \(m\)
+	random walks of length \(t\) from \(v_{i}\), and construct a set \(R_{i}\)
+	containing all reached vertices. This ensures that if \(u\) is in the same
+	component as \(v_{i}\), then \(u \in R_{i}\) with probability at least
+	\(\frac{1}{\sqrt{n}}\). The total time complexity of initialization is
+	\(\mathcal{O} \big( k \sqrt{n} \log n \big)\).
+	
+	\medskip
+	
+	To answer a query, we perform \(m\) random walks of length \(t\) from \(x\),
+	and create a set \(Q\) of all reached vertices. We then search for \(i \in
+	\{1, 2, \ldots, k\}\) such that \(Q \cap R_{i} \neq \emptyset\). The time
+	complexity of a single query is \(\mathcal{O} \big( k \sqrt{n} \log n
+	\big)\), as it can be checked whether \(Q \cap R_{i} \neq \emptyset\) in
+	time \(\mathcal{O} ((|Q| + |R_{i}|) \log (|Q| + |R_{i}|)) = \mathcal{O}
+	\big( \sqrt{n} \log n \big)\).
+	
+	\medskip
+	
+	It remains to estimate the probability that \(Q \cap R_{i} \neq \emptyset\),
+	where \(i\) is such that \(x\) and \(v_{i}\) lie in the same connected
+	component. Since for any \(u\) in this component, the probabilities that \(u
+	\in R_{i}\) and \(u \in Q\) are both at least \(\frac{1}{\sqrt{n}}\), the
+	probability that \(u\) belongs to both these sets is at least
+	\(\frac{1}{n}\). Thus, the probability that no such \(u\) exists is at most
+	\[
+		\bigg( 1 - \frac{1}{n} \bigg)^{n} \ \leqslant \ e^{-1} \text{,}
+	\]
+	and so the probability that \(Q \cap R_{i} \neq \emptyset\) is at least
+	\(1 - e^{-1} \geqslant \frac{1}{2}\).
 \end{document}
