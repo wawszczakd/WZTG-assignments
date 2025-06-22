@@ -78,8 +78,9 @@
 		(1 - \alpha)^{t} \text{,}
 	\]
 	where \(p_{t}(a, b)\) is the probability that a random walk of length \(t\)
-	starting at \(a\) ends at \(b\). By setting \(t =
-	\frac{\ln (2 n)}{- \ln (1 - \alpha)} = \mathcal{O}(\log n)\), we obtain
+	starting at \(a\) ends at \(b\). By setting \(t = \Big\lceil
+	\frac{\ln (2 n)}{- \ln (1 - \alpha)} \Big\rceil = \mathcal{O}(\log n)\), we
+	obtain
 	\[
 		\bigg| p_{t}(v_{i}, u) - \frac{1}{n} \bigg| \ \leqslant \ \frac{1}{2 n}
 		\text{,} \quad \text{and therefore} \quad p_{t}(v_{i}, u) \in \bigg[
