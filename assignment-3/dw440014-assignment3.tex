@@ -106,19 +106,23 @@
 		\text{,}
 	\]
 	hence
+	\[
+		m \ \geqslant \ - 2 n \ln \bigg( 1 - \frac{1}{\sqrt{n}} \bigg) \ = \ 2 n
+		\cdot \sum\limits_{i = 1}^{\infty}
+		\frac{\Big( \frac{1}{\sqrt{n}} \Big)^{i}}{i} \ = \ 2 \sqrt{n} + 1 + 2
+		\cdot \sum\limits_{i = 3}^{\infty}
+		\frac{\Big( \frac{1}{\sqrt{n}} \Big)^{i - 2}}{i} \text{.}
+	\]
+	It is enough to set
 	\begin{align*}
-		m \ &\geqslant \ - 2 n \ln \bigg( 1 - \frac{1}{\sqrt{n}} \bigg) \ = \ 2
-		n \cdot \sum\limits_{i = 1}^{\infty}
-		\frac{\Big( \frac{1}{\sqrt{n}} \Big)^{i}}{i} \ = \ 2 \sqrt{n} + 1 +
-		\sum\limits_{i = 3}^{\infty}
-		\frac{\Big( \frac{1}{\sqrt{n}} \Big)^{i - 2}}{i} \ \geqslant \\
-		&\geqslant \ 2 \sqrt{n} + 1 + \sum\limits_{i = 3}^{\infty} \bigg(
-		\frac{1}{\sqrt{n}} \bigg)^{i - 2} \ = \ 2 \sqrt{n} + 1 +
-		\frac{1}{\sqrt{n}} \cdot \sum\limits_{i = 0}^{\infty} \bigg(
-		\frac{1}{\sqrt{n}} \bigg)^{i} \ = \\
-		&= \ 2 \sqrt{n} + 1 + \frac{1}{\sqrt{n}} \cdot
-		\frac{1}{1 - \frac{1}{\sqrt{n}}} \ = \ 2 \sqrt{n} + 1 +
-		\frac{1}{\sqrt{n} - 1} \text{,}
+		m \ &= \ \Bigg\lceil 2 \sqrt{n} + 1 + 2 \cdot
+		\sum\limits_{i = 3}^{\infty} \bigg( \frac{1}{\sqrt{n}} \bigg)^{i - 2}
+		\Bigg\rceil \ = \ \Bigg\lceil 2 \sqrt{n} + 1 + \frac{2}{\sqrt{n}} \cdot
+		\sum\limits_{i = 0}^{\infty} \bigg( \frac{1}{\sqrt{n}} \bigg)^{i}
+		\Bigg\rceil \ = \\
+		&= \ \Bigg\lceil 2 \sqrt{n} + 1 + \frac{2}{\sqrt{n}} \cdot
+		\frac{1}{1 - \frac{1}{\sqrt{n}}} \Bigg\rceil \ = \ \bigg\lceil 2
+		\sqrt{n} + 1 + \frac{2}{\sqrt{n} - 1} \bigg\rceil \text{,}
 	\end{align*}
 	so \(m = \mathcal{O} \big( \sqrt{n} \big)\).
 	
